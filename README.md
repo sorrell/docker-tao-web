@@ -1,48 +1,26 @@
-# Docker Recipe for TaoTesting
+# Docker Recipe for Tao Testing
 
-This is a (docker)[https://www.docker.com/] build recipe for Tao Testing (See http://taotesting.com/) - an
-online testing and certification platform.
+This is a [https://www.docker.com/](Docker) build recipe for [http://taotesting.com/](Tao Testing)  - an online testing and certification platform.
 
-Assuming you already have docker installed, the simplest way to use it is to do:
-
-```
-docker pull kartoza/tao-web
-docker pull kartoza/postgis
-```
-
-To get the base images. This may take a little while depending on your available bandwidth. Now spin up
-a mysql container and a Tao container:
+The easiest way to fire this up is to install Docker Compose and then run
 
 ```
-docker run --name="tao-postgis" \
-	--hostname="tao-postgis" \
-	--restart="always" \
-	-e 
-	-d -t kartoza/postgis
+docker-compose up
 
-docker run --name="tao-web" \
-	--hostname="tao-web" \
-	--restart="always" \
-	-d -t -p 8002:80 \
-	--link tao-postgis:tao-postgis \
-	kartoza/tao-web
 ```
+That should download the base image for both sorrell/tao-web and postgres.
 
-Next determine the ip address of your postgis container and create the tao
+Next determine the ip address of your postgres container and create the tao
 database:
 
 ```
-createdb -h 172.17.0.29 -U docker tao
+createdb -h 172.17.0.29 -U postgres dbname
 ```
 
-Once your tao container is running determine the IP address of your tao server and open your browser at that address, then follow the installation wizard.
+Once your tao container is running determine the IP address of your tao server and open your browser at that address, then follow the installation wizard.  For the database hostname you should use `pgdb` as outlined in the docker-compose.yml, and you should use the `dbname` specified in your `createdb` with **Overwrite option selected**.
 
-For the postgresql connection options use host 'tao-postgis', user 'docker' and
-password 'docker' or set your own user/pwd  and then check the 'over write
-database' option.
+For the postgresql connection, the user is 'postgres' and
+password is 'example' - you can change the password in the docker-compose.yml.
 
 
 -----------------
-
-Tim Sutton (tim@kartoza.com)
-September 2014
