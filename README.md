@@ -1,6 +1,6 @@
 # Docker Recipe for Tao Testing
 
-This is a [https://www.docker.com/](Docker) build recipe for [http://taotesting.com/](Tao Testing)  - an online testing and certification platform.
+This is a [Docker](https://www.docker.com/) build recipe for [Tao Testing](http://taotesting.com/)  - an online testing and certification platform.
 
 The easiest way to fire this up is to install Docker Compose and then run
 
