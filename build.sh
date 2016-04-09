@@ -1,4 +1,3 @@
 #!/bin/sh
 
-docker pull mysql
-docker build -t kartoza/tao-web .
+docker build -t sorrell/tao-web .

@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-MAINTAINER Tim Sutton <tim@kartoza.com>
+MAINTAINER Nick Sorrell <nick@cint.io>
 
 RUN export DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_FRONTEND noninteractive
@@ -15,12 +15,11 @@ RUN apt-get -y update && apt-get install -y apache2 php5 php5-gd php5-pgsql php5
 
 RUN a2enmod rewrite
 
-ADD http://releases.taotesting.com/TAO_2.6.5_build.zip /tmp/TAO_2.6.5_build.zip
-#ADD TAO_2.6.5_build.zip /tmp/TAO_2.6.5_build.zip
+ADD http://releases.taotesting.com/TAO_3.0.0_build.zip /tmp/TAO_3.0.0_build.zip
 
 WORKDIR /tmp
 
-RUN unzip TAO_2.6.5_build.zip; mv TAO_2.6.5_build web; mv web /home/; chown -R www-data.www-data /home/web
+RUN unzip TAO_3.0.0_build.zip; mv TAO_3.0.0_build web; mv web /home/; chown -R www-data.www-data /home/web
 
 ADD apache.conf /etc/apache2/sites-enabled/000-default.conf
 ADD php.ini /etc/php5/apache2/php.ini
