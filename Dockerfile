@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM php:7.0.5-apache
 
 MAINTAINER Nick Sorrell <nick@cint.io>
 
@@ -11,7 +11,14 @@ RUN dpkg-divert --local --rename --add /sbin/initctl
 # Or comment this line out if you do not wish to use caching
 ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
-RUN apt-get -y update && apt-get install -y apache2 php5 php5-gd php5-pgsql php5-tidy php5-curl php-xml-parser unzip
+RUN docker-php-ext-install -j$(nproc) \
+  curl \
+  gd \
+  pgsql \
+  tidy \
+  xml-parser
+  
+RUN apt-get -y update && apt-get install unzip
 
 RUN a2enmod rewrite
 
