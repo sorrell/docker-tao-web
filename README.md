@@ -2,7 +2,8 @@
 
 This is a [Docker](https://www.docker.com/) build recipe for [Tao Testing](http://taotesting.com/)  - an online testing and certification platform.
 
-The easiest way to fire this up is to follow these instructions:
+The easiest way to fire this up is to follow these instructions:  
+
 1. Install Docker Compose 
 2. Run `docker-compose up`
 3. Postgres container username=`postgres` and password=`example` as declared in the docker-compose.yml 
