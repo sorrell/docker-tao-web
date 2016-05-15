@@ -11,14 +11,24 @@ RUN dpkg-divert --local --rename --add /sbin/initctl
 # Or comment this line out if you do not wish to use caching
 ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
+RUN apt-get -y update && \
+	apt-get install -y \
+	curl \
+	libcurl4-gnutls-dev \
+	libpng-dev \
+ 	libpq-dev \
+  	libxml2-dev \
+  	libtidy-dev \
+	unzip
+
+
 RUN docker-php-ext-install -j$(nproc) \
   curl \
   gd \
   pgsql \
   tidy \
-  xml-parser
+  xml
   
-RUN apt-get -y update && apt-get install unzip
 
 RUN a2enmod rewrite
 
@@ -29,7 +39,7 @@ WORKDIR /tmp
 RUN unzip TAO_3.0.0_build.zip; mv TAO_3.0.0_build web; mv web /home/; chown -R www-data.www-data /home/web
 
 ADD apache.conf /etc/apache2/sites-enabled/000-default.conf
-ADD php.ini /etc/php5/apache2/php.ini
+ADD php.ini /usr/local/etc/php/
 
 EXPOSE 80
 
