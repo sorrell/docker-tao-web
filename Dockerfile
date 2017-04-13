@@ -2,6 +2,9 @@ FROM php:7.0.5-apache
 
 MAINTAINER Nick Sorrell <nick@cint.io>
 
+#ARG TAO_SERVER_NAME
+#ENV TAO_SERVER_NAME=$TAO_SERVER_NAME
+
 RUN export DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 RUN dpkg-divert --local --rename --add /sbin/initctl
@@ -38,9 +41,11 @@ ADD http://releases.taotesting.com/TAO_3.1.0-RC7_build.zip /tmp/TAO_3.1.0-RC7_bu
 
 WORKDIR /tmp
 
-RUN unzip TAO_3.1.0-RC7_build.zip; mv TAO_3.1.0-RC7_build web; mv web /home/; chown -R www-data.www-data /home/web
+RUN unzip -q TAO_3.1.0-RC7_build.zip; mv TAO_3.1.0-RC7_build web; mv web /home/; chown -R www-data.www-data /home/web
 
 ADD apache.conf /etc/apache2/sites-enabled/000-default.conf
+#RUN sed -i -e "s/TAO_SERVER_NAME/${TAO_SERVER_NAME}/g" /etc/apache2/sites-enabled/000-default.conf
+
 ADD php.ini /usr/local/etc/php/
 
 EXPOSE 80

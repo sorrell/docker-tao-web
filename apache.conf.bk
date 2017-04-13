@@ -1,6 +1,6 @@
 <VirtualHost *:80>
 
-  ServerName 188.226.145.196
+  ServerName TAO_SERVER_NAME
   ServerAdmin webmaster@localhost
 
   ErrorLog /var/log/apache2/tao.error.log
