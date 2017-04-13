@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t sorrell/tao-web .
+docker build -t sorrell/docker-tao-web .

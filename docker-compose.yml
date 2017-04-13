@@ -1,9 +1,9 @@
 tao:
-  image: sorrell/tao-web
+  image: sorrell/docker-tao-web
   links:
     - pgdb
   ports:
-    - "8002:80"
+    - "80:80"
 pgdb:
   image: postgres
   ports:
