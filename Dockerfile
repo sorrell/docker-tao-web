@@ -2,8 +2,8 @@ FROM php:7.0.5-apache
 
 MAINTAINER Nick Sorrell <nick@cint.io>
 
-#ARG TAO_SERVER_NAME
-#ENV TAO_SERVER_NAME=$TAO_SERVER_NAME
+ARG TAO_SERVER_NAME
+ENV TAO_SERVER_NAME=$TAO_SERVER_NAME
 
 RUN export DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_FRONTEND noninteractive
@@ -38,13 +38,19 @@ RUN docker-php-ext-install -j$(nproc) \
 RUN a2enmod rewrite
 
 ADD http://releases.taotesting.com/TAO_3.1.0-RC7_build.zip /tmp/TAO_3.1.0-RC7_build.zip
+ADD https://github.com/mathjax/MathJax/archive/2.7.0.zip /tmp/2.7.0.zip
 
 WORKDIR /tmp
 
-RUN unzip -q TAO_3.1.0-RC7_build.zip; mv TAO_3.1.0-RC7_build web; mv web /home/; chown -R www-data.www-data /home/web
+RUN unzip -q TAO_3.1.0-RC7_build.zip; \
+    mv TAO_3.1.0-RC7_build web; \
+    mv web /home/; \
+    unzip -q 2.7.0.zip; \
+    mv MathJax-2.7.0/* /home/web/taoQtiItem/views/js/mathjax/; \
+    chown -R www-data.www-data /home/web
 
 ADD apache.conf /etc/apache2/sites-enabled/000-default.conf
-#RUN sed -i -e "s/TAO_SERVER_NAME/${TAO_SERVER_NAME}/g" /etc/apache2/sites-enabled/000-default.conf
+RUN sed -i -e "s/TAO_SERVER_NAME/${TAO_SERVER_NAME}/g" /etc/apache2/sites-enabled/000-default.conf
 
 ADD php.ini /usr/local/etc/php/
 
