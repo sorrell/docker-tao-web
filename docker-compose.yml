@@ -11,4 +11,4 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_PASSWORD:${TAO_POSTGRES_PASSWORD}

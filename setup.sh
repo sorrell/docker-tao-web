@@ -1,9 +1,8 @@
 #!/bin/sh
 
-export TAO_SERVER_NAME=188.226.145.196
+export TAO_SERVER_NAME=127.0.0.1
 export TAO_POSTGRES_DB=taodb
 export TAO_POSTGRES_USER=postgres
-export TAO_POSTGRES_PASSWORD=dbpass
 
 echo
 echo -- Build TAO image
@@ -14,7 +13,7 @@ echo -- Up TAO and Postgres images
 docker-compose up -d
 
 echo
-echo -- Wait 5 second Postgres to up and run
+echo -- Wait 5 seconds for Postgres to up and run
 sleep 5
 
 echo
