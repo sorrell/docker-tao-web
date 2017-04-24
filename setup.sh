@@ -6,7 +6,7 @@ export TAO_POSTGRES_USER=postgres
 
 echo
 echo -- Build TAO image
-#docker build --build-arg TAO_SERVER_NAME=$TAO_SERVER_NAME -t sorrell/docker-tao-web .
+docker build --build-arg TAO_SERVER_NAME=$TAO_SERVER_NAME -t sorrell/docker-tao-web .
 
 echo
 echo -- Up TAO and Postgres images
