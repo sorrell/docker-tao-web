@@ -1,12 +1,14 @@
-tao:
-  image: sorrell/tao-web
-  links:
-    - pgdb
-  ports:
-    - "8002:80"
-pgdb:
-  image: postgres
-  ports:
-    - "5432:5432"
-  environment:
-    POSTGRES_PASSWORD: example
+version: '2'
+services:
+  tao:
+    image: sorrell/docker-tao-web
+    links:
+      - pgdb
+    ports:
+      - "80:80"
+  pgdb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD:${TAO_POSTGRES_PASSWORD}

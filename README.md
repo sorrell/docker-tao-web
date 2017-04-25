@@ -2,8 +2,20 @@
 
 This is a [Docker](https://www.docker.com/) build recipe for [Tao Testing](http://taotesting.com/)  - an online testing and certification platform.
 
-The easiest way to fire this up is to follow these instructions:  
+The easiest way to fire this up is to follow these instructions:
 
+### TAO Version 3.1+
+1. Install Docker and Docker Compose
+2. Modify the variables inside **setup.sh** and **.env** according to your needs and host parameters
+3. Execute `sudo ./setup.sh` from the command line
+4. Open http://your-host and follow installation wizard
+    * Use **pgdb** as **database host** name
+    * Use **TAO_POSTGRES_DB** value from **setup.sh** as **database name**
+    * Select the **Overwrite option**
+
+**Note:** OPCache is enabled in the php.ini.
+
+### TAO Version 3.0 and below
 1. Install Docker Compose 
 2. Run `docker-compose up`
 3. Postgres container username=`postgres` and password=`example` as declared in the docker-compose.yml 
