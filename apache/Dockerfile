@@ -55,4 +55,4 @@ RUN sed -i -e "s/SERVER_NAME/${SERVER_NAME}/g" /etc/apache2/sites-enabled/000-de
 
 ADD ./dist/php.ini /usr/local/etc/php/
 
-CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
+#CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
