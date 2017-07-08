@@ -5,12 +5,12 @@ This is a [Docker](https://www.docker.com/) build recipe for [Tao Testing](http:
 The easiest way to fire this up is to follow these instructions:
 
 ### TAO Version 3.1+
-1. Install Docker and Docker Compose
-2. Modify the variables inside **setup.sh** and **.env** according to your needs and host parameters
-3. Execute `sudo ./setup.sh` from the command line
+1. Install Docker and Docker Compose (./docker.ubuntu.sh)
+2. Copy '.env.template' to '.env' and update parameters according to your environment
+3. Run with `sudo ./up.sh` from the command line ('sudo ./up.sh -d' in detached mode)
 4. Open http://your-host and follow installation wizard
     * Use **pgdb** as **database host** name
-    * Use **TAO_POSTGRES_DB** value from **setup.sh** as **database name**
+    * Use **POSTGRES_DB**, **POSTGRES_USER**, **POSTGRES_PASSWORD** values from **.env** file
     * Select the **Overwrite option**
 
 **Note:** OPCache is enabled in the php.ini.

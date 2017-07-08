@@ -1,14 +1,20 @@
 version: '2'
 services:
   tao:
-    image: sorrell/docker-tao-web
+    build:
+      context: ./apache
+      args:
+        - SERVER_NAME
+    environment:
+      - SERVER_NAME
     links:
       - pgdb
     ports:
-      - "80:80"
+      - 80:80
   pgdb:
-    image: postgres
-    ports:
-      - "5432:5432"
+    build:
+      context: ./postgres
     environment:
-      - POSTGRES_PASSWORD:${TAO_POSTGRES_PASSWORD}
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
